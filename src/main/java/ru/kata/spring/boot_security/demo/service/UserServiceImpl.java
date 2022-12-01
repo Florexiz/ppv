@@ -42,27 +42,23 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
     public User findUserById(Long userId) {
         Optional<User> userFromDb = userRepository.findById(userId);
         return userFromDb.orElse(new User());
     }
 
     @Override
-    @Transactional
     public User findUserByName(String userName) {
 
         return userRepository.findByName(userName);
     }
 
     @Override
-    @Transactional
     public List<User> allUsers() {
         return userRepository.findAll();
     }
 
     @Override
-    @Transactional
     public boolean saveUser(User user) {
         User userFromDB = userRepository.findByName(user.getUsername());
 
@@ -76,7 +72,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
     public void updateUser(User user) {
         User userFromDb = userRepository.getById(user.getId());
         if (!userFromDb.getPassword().equals(user.getPassword())) {
@@ -86,7 +81,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
     public boolean deleteUser(Long userId) {
         if (userRepository.findById(userId).isPresent()) {
             userRepository.deleteById(userId);
@@ -97,7 +91,6 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    @Transactional
     public List<Role> listRoles() {
         return roleRepository.findAll();
     }
